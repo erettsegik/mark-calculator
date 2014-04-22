@@ -1,0 +1,38 @@
+body {
+  text-align: center;
+}
+
+table {
+  margin: auto;
+  background-color: #dcdcdc;
+  border: 1px solid #969696;
+}
+
+thead {
+  background-color: #660077;
+  color: #ffffff;
+}
+
+td {
+  border: 1px solid #969696;
+}
+
+span.kis {
+  color: #0000ff;
+}
+
+span.normal {
+  color: #000000;
+}
+
+span.dolgozat {
+  color: #00ff00;
+}
+
+span.temazaro {
+  color: #ff0000;
+}
+
+span.vizsgajegy {
+  color: #800080;
+}
