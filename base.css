@@ -1,9 +1,12 @@
 body {
   text-align: center;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
 }
 
 table {
   margin: auto;
+  margin-top: 50px;
   background-color: #dcdcdc;
   border: 1px solid #969696;
 }
@@ -15,6 +18,20 @@ thead {
 
 td {
   border: 1px solid #969696;
+}
+
+#tantargy {
+  background-color: #828C96;
+  color: #ffffff;
+}
+
+#jegyek {
+  background-color: #eeeeee;
+}
+
+#atlag {
+  background-color: #646482;
+  color: #ffffff;
 }
 
 span.kis {
@@ -33,6 +50,6 @@ span.temazaro {
   color: #ff0000;
 }
 
-span.vizsgajegy {
+span.vizsga {
   color: #800080;
 }

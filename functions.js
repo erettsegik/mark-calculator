@@ -1,15 +1,46 @@
 var weight;
+var raw;
 
-function printavg() {
+function parseString() {
 
+    var input = document.getElementById("notes").value;
+    var splitstr = input.split(":");
+    var subject = splitstr[0];
+    raw = splitstr[1].trim();
+    raw = raw.split(" ");
     var select = document.getElementById("sulyozas");
     weight = select.options[select.selectedIndex].value;
-    var raw;
-    raw = document.getElementById("notes").value;
-    var avg = average(raw.split(" "));
+    var avg = average(raw);
     if (avg !== "NaN") {
+        document.getElementById("tantargy").innerHTML = subject;
+        document.getElementById("jegyek").innerHTML = displayMarks();
         document.getElementById("atlag").innerHTML = avg;
     }
+}
+
+function displayMarks() {
+
+    var i;
+    var returnstr = "";
+    var temphtml;
+
+    for (i = 0; i < raw.length; i++) {
+
+        switch(raw[i].substring(0, 1)) {
+
+            case "k": temphtml = "<span class='kis'>" + raw[i].substring(1) + "</span>"; break;
+            case "n": temphtml = "<span class='normal'>" + raw[i].substring(1, 2) + "</span>"; break;
+            case "d": temphtml = "<span class='dolgozat'>" + raw[i].substring(1, 2) + "</span>"; break;
+            case "t": temphtml = "<span class='temazaro'>" + raw[i].substring(1, 2) + "</span>"; break;
+            case "v": temphtml = "<span class='vizsga'>" + raw[i].substring(1, 2) + "</span>"; break;
+
+        }
+
+        returnstr += temphtml;
+
+    }
+
+    return returnstr;
 
 }
 
