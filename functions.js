@@ -4,18 +4,44 @@ var raw;
 function parseString() {
 
     var input = document.getElementById("notes").value;
-    var splitstr = input.split(":");
+    var splitarray = input.split("\n");
+    var output = "";
+    var i;
+
+    for (i = 0; i < splitarray.length; i++) {
+
+        output += displayRow(splitarray[i]);
+
+    }
+
+    document.getElementById("tbody").innerHTML = output;
+
+}
+
+function displayRow(tomb) {
+
+    var splitstr = tomb.split(":");
     var subject = splitstr[0];
     raw = splitstr[1].trim();
     raw = raw.split(" ");
     var select = document.getElementById("sulyozas");
     weight = select.options[select.selectedIndex].value;
     var avg = average(raw);
+
     if (avg !== "NaN") {
-        document.getElementById("tantargy").innerHTML = subject;
-        document.getElementById("jegyek").innerHTML = displayMarks();
-        document.getElementById("atlag").innerHTML = avg;
+
+        var returnhtml = "<tr><td id='tantargy'>";
+        returnhtml += subject;
+        returnhtml += "</td><td id='jegyek'>";
+        returnhtml += displayMarks();
+        returnhtml += "</td><td id='atlag'>";
+        returnhtml += avg;
+        returnhtml += "</td></tr>";
+
     }
+
+    return returnhtml;
+
 }
 
 function displayMarks() {

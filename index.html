@@ -9,13 +9,15 @@
   </script>
 </head>
 <body>
-  <div id='input'>
-    input: <input type='text' id='notes' placeholder='földrajz: k3 d4 t2' size='30'>
-    <input type='submit' onclick='parseString();'>
-  </div>
   <div id='leiras'>
     <p>A jegyeket a következő formátumban lehet jelenleg megadni: tantárgy, majd egy kettőspont után a jegyek szóközzel elválasztva, mindegyiket a típusának kezdőbetűje után írva (példa a bemeneti mezőben).
+    <br>Minden tantárgyat új sorba kell írni.
     <br>Tört jegyek beírására egyelőre nincs lehetőség.</p>
+  </div>
+  <div id='input'>
+    <textarea id='notes' placeholder='földrajz: k1 n2 d3 t4 v5' rows='4' cols='40'></textarea>
+    <br>
+    <input type='submit' onclick='parseString();'>
   </div>
   <table id='main'>
     <thead>
@@ -35,15 +37,7 @@
         </td>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td id='tantargy'>
-        </td>
-        <td id='jegyek'>
-        </td>
-        <td id='atlag'>
-        </td>
-      </tr>
+    <tbody id ='tbody'>
     </tbody>
     <tfoot>
       <tr>
