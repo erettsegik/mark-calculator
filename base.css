@@ -23,6 +23,8 @@ td {
 #tantargy {
   background-color: #828C96;
   color: #ffffff;
+  text-align: left;
+  padding-left: 5px;
 }
 
 #jegyek {
@@ -34,6 +36,11 @@ td {
   color: #ffffff;
 }
 
+#bizonyitvany {
+  color: #ffffff;
+  background-color: #446655;
+}
+
 span.kis {
   color: #0000ff;
 }
@@ -43,7 +50,7 @@ span.normal {
 }
 
 span.dolgozat {
-  color: #00ff00;
+  color: green;
 }
 
 span.temazaro {

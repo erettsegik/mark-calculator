@@ -36,6 +36,8 @@ function displayRow(tomb) {
         returnhtml += displayMarks();
         returnhtml += "</td><td id='atlag'>";
         returnhtml += avg;
+        returnhtml += "</td><td id='bizonyitvany'>";
+        returnhtml += mark(avg);
         returnhtml += "</td></tr>";
 
     }
@@ -67,6 +69,36 @@ function displayMarks() {
     }
 
     return returnstr;
+
+}
+
+function mark(avg) {
+
+    var mark;
+
+    if (avg < 1.5) {
+
+        mark = "elégtelen";
+
+    } else if (avg < 2.5) {
+
+        mark = "elégséges";
+
+    } else if (avg < 3.5) {
+
+        mark = "közepes";
+
+    } else if (avg < 4.5) {
+
+        mark = "jó";
+
+    } else {
+
+        mark = "jeles";
+
+    }
+
+    return mark;
 
 }
 
