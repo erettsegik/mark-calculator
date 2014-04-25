@@ -55,10 +55,10 @@ function displayMarks() {
         switch(raw[i].substring(0, 1)) {
 
             case "k": temphtml = "<span class='kis'>" + raw[i].substring(1) + "</span>"; break;
-            case "n": temphtml = "<span class='normal'>" + raw[i].substring(1, 2) + "</span>"; break;
-            case "d": temphtml = "<span class='dolgozat'>" + raw[i].substring(1, 2) + "</span>"; break;
-            case "t": temphtml = "<span class='temazaro'>" + raw[i].substring(1, 2) + "</span>"; break;
-            case "v": temphtml = "<span class='vizsga'>" + raw[i].substring(1, 2) + "</span>"; break;
+            case "n": temphtml = "<span class='normal'>" + raw[i].substring(1) + "</span>"; break;
+            case "d": temphtml = "<span class='dolgozat'>" + raw[i].substring(1) + "</span>"; break;
+            case "t": temphtml = "<span class='temazaro'>" + raw[i].substring(1) + "</span>"; break;
+            case "v": temphtml = "<span class='vizsga'>" + raw[i].substring(1) + "</span>"; break;
 
         }
 
@@ -91,7 +91,12 @@ function average(tomb) {
 
 function getValue(str) {
 
-    return parseInt(str.substring(1, 2));
+    switch(str.substring(1).length) {
+
+        case 1: return parseInt(str.substring(1, 2));
+        case 3: return ((parseInt(str.substring(1, 2)) + parseInt(str.substring(3, 4))) / 2);
+
+    }
 
 }
 
