@@ -1,8 +1,9 @@
 var data = {};
+var input = "";
 
 function parseInput() {
 
-    var input = document.getElementById("notes").value.trim();
+    input = document.getElementById("notes").value.trim();
     var splitarray = input.split("\n");
 
     for (var i = 0; i < splitarray.length; i++) {
@@ -12,6 +13,10 @@ function parseInput() {
     }
 
     display();
+
+    cookiemagic();
+
+    alert(readCookie("data"));
 
 }
 
@@ -88,6 +93,34 @@ function getMarkValue(str) {
         case 3: return ((parseInt(str.substring(1, 2)) + parseInt(str.substring(3, 4))) / 2);
 
     }
+
+}
+
+function cookiemagic() {
+
+    if (input != "") {
+
+        var date = new Date();
+        date.setTime(date.getTime()+(365*24*60*60*1000));
+        cookiestring = "data=" + input + "; expires=" + date.toGMTString() + "; path=/";
+        document.cookie = cookiestring;
+
+    } else {
+
+        var date = new Date();
+        date.setTime(date.getTime()-(365*24*60*60*1000));
+        document.cookie = "data=; expires=" + date.toGMTString() + "; path=/";
+
+    }
+
+}
+
+function getCookieData() {
+
+    var temp = document.cookie.split(";");
+    var data = temp[0].split("=")[1];
+    var textarea = document.getElementById("notes");
+    textarea.value = data;
 
 }
 
