@@ -1,16 +1,78 @@
-var weight;
-var raw;
+var data = {};
 
-function parseString() {
+function parseInput() {
 
-    var input = document.getElementById("notes").value;
+    var input = document.getElementById("notes").value.trim();
     var splitarray = input.split("\n");
+
+    for (var i = 0; i < splitarray.length; i++) {
+
+        parseLine(splitarray[i]);
+
+    }
+
+    display();
+
+}
+
+function parseLine(instring) {
+
+    var splitarray = instring.split(":");
+    var subject = splitarray[0].trim();
+    var marks = splitarray[1].trim().split(" ");
+    data[subject] = marks;
+
+}
+
+function display() {
+
+    var select = document.getElementById("sulyozas");
+    weight = select.options[select.selectedIndex].value;
+
     var output = "";
-    var i;
 
-    for (i = 0; i < splitarray.length; i++) {
+    for (var subject in data) {
 
-        output += displayRow(splitarray[i]);
+        var avg = 0;
+        var base = 0;
+        var sum = 0;
+
+        output += "<tr><td id='tantargy'>";
+        output += subject;
+        output += "</td><td id='jegyek'>";
+
+        for (var markindex in data[subject]) {
+
+            var mark = data[subject][markindex].trim();
+
+            if (mark != "" && mark != " ") {
+
+                var multiplier = 0;
+
+                switch(mark.substring(0, 1)) {
+
+                    case "k": multiplier = parseInt(weight.substring(0, 1)); output += "<span class='kis'>" + mark.substring(1) + "</span>"; break;
+                    case "n": multiplier = parseInt(weight.substring(1, 2)); output += "<span class='normal'>" + mark.substring(1) + "</span>"; break;
+                    case "d": multiplier = parseInt(weight.substring(2, 3)); output += "<span class='dolgozat'>" + mark.substring(1) + "</span>"; break;
+                    case "t": multiplier = parseInt(weight.substring(3, 4)); output += "<span class='temazaro'>" + mark.substring(1) + "</span>"; break;
+                    case "v": multiplier = parseInt(weight.substring(4, 5)); output += "<span class='vizsga'>" + mark.substring(1) + "</span>"; break;
+
+                }
+
+                base += multiplier;
+                sum += getMarkValue(mark) * multiplier;
+
+            }
+
+        }
+
+        avg = (sum/base).toFixed(2);
+
+        output += "</td><td id='atlag'>";
+        output += avg;
+        output += "</td><td id='bizonyitvany'>";
+        output += getFinalMark(avg);
+        output += "</td></tr>";
 
     }
 
@@ -18,61 +80,18 @@ function parseString() {
 
 }
 
-function displayRow(tomb) {
+function getMarkValue(str) {
 
-    var splitstr = tomb.split(":");
-    var subject = splitstr[0];
-    raw = splitstr[1].trim();
-    raw = raw.split(" ");
-    var select = document.getElementById("sulyozas");
-    weight = select.options[select.selectedIndex].value;
-    var avg = average(raw);
+    switch(str.substring(1).length) {
 
-    if (avg !== "NaN") {
-
-        var returnhtml = "<tr><td id='tantargy'>";
-        returnhtml += subject;
-        returnhtml += "</td><td id='jegyek'>";
-        returnhtml += displayMarks();
-        returnhtml += "</td><td id='atlag'>";
-        returnhtml += avg;
-        returnhtml += "</td><td id='bizonyitvany'>";
-        returnhtml += mark(avg);
-        returnhtml += "</td></tr>";
+        case 1: return parseInt(str.substring(1, 2));
+        case 3: return ((parseInt(str.substring(1, 2)) + parseInt(str.substring(3, 4))) / 2);
 
     }
 
-    return returnhtml;
-
 }
 
-function displayMarks() {
-
-    var i;
-    var returnstr = "";
-    var temphtml;
-
-    for (i = 0; i < raw.length; i++) {
-
-        switch(raw[i].substring(0, 1)) {
-
-            case "k": temphtml = "<span class='kis'>" + raw[i].substring(1) + "</span>"; break;
-            case "n": temphtml = "<span class='normal'>" + raw[i].substring(1) + "</span>"; break;
-            case "d": temphtml = "<span class='dolgozat'>" + raw[i].substring(1) + "</span>"; break;
-            case "t": temphtml = "<span class='temazaro'>" + raw[i].substring(1) + "</span>"; break;
-            case "v": temphtml = "<span class='vizsga'>" + raw[i].substring(1) + "</span>"; break;
-
-        }
-
-        returnstr += temphtml;
-
-    }
-
-    return returnstr;
-
-}
-
-function mark(avg) {
+function getFinalMark(avg) {
 
     var mark;
 
@@ -99,49 +118,5 @@ function mark(avg) {
     }
 
     return mark;
-
-}
-
-function average(tomb) {
-
-    var i;
-    var multiplier;
-    var sum = 0;
-    var base = 0;
-
-    for (i = 0; i < tomb.length; i++) {
-
-        multiplier = getMultiplier(tomb[i].substring(0, 1));
-        base += multiplier;
-        sum += getValue(tomb[i]) * multiplier;
-
-    }
-
-    return (sum/base).toFixed(2);
-
-}
-
-function getValue(str) {
-
-    switch(str.substring(1).length) {
-
-        case 1: return parseInt(str.substring(1, 2));
-        case 3: return ((parseInt(str.substring(1, 2)) + parseInt(str.substring(3, 4))) / 2);
-
-    }
-
-}
-
-function getMultiplier(ch) {
-
-    switch(ch) {
-
-        case "k": return parseInt(weight.substring(0, 1));
-        case "n": return parseInt(weight.substring(1, 2));
-        case "d": return parseInt(weight.substring(2, 3));
-        case "t": return parseInt(weight.substring(3, 4));
-        case "v": return parseInt(weight.substring(4, 5));
-
-    }
 
 }

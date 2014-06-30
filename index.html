@@ -16,7 +16,7 @@
   <div id='input'>
     <textarea id='notes' placeholder='földrajz: k1 n2 d3 t4 v5' rows='4' cols='40'></textarea>
     <br>
-    <input type='submit' onclick='parseString();'>
+    <input type='submit' onclick='parseInput();'>
   </div>
   <table id='main'>
     <thead>
@@ -27,7 +27,7 @@
           Gipsz Jakab
         </td>
         <td colspan='2'>
-          <select id='sulyozas' onchange='parseString();'>
+          <select id='sulyozas' onchange='parseInput();'>
             <option value='11111'>1:1:1:1:1</option>
             <option value='11122'>1:1:1:2:2</option>
             <option value='12244'>1:2:2:4:4</option>
