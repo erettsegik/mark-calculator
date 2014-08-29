@@ -14,9 +14,7 @@ function parseInput() {
 
     display();
 
-    cookiemagic();
-
-    alert(readCookie("data"));
+    //cookiemagic();
 
 }
 
@@ -26,6 +24,37 @@ function parseLine(instring) {
     var subject = splitarray[0].trim();
     var marks = splitarray[1].trim().split(" ");
     data[subject] = marks;
+
+}
+
+function addSubject() {
+
+    var subjectname = prompt("Tantárgy neve:");
+    data[subjectname] = [];
+    display();
+
+}
+
+function deleteSubject(subject) {
+
+    delete data[subject];
+    display();
+
+}
+
+function addMark(subject) {
+
+    var newmark = prompt("Jegy:");
+    data[subject].push(newmark);
+    display();
+
+}
+
+function modifyMark (subject, markindex) {
+
+    var value = prompt("A jegy új értéke (ha üres, kitörli):");
+    data[subject][markindex] = value;
+    display();
 
 }
 
@@ -44,6 +73,7 @@ function display() {
 
         output += "<tr><td id='tantargy'>";
         output += subject;
+        output += " <a href='#' onclick='deleteSubject(\"" + subject + "\");'>-törlés</a>";
         output += "</td><td id='jegyek'>";
 
         for (var markindex in data[subject]) {
@@ -56,11 +86,26 @@ function display() {
 
                 switch(mark.substring(0, 1)) {
 
-                    case "k": multiplier = parseInt(weight.substring(0, 1)); output += "<span class='kis'>" + mark.substring(1) + "</span>"; break;
-                    case "n": multiplier = parseInt(weight.substring(1, 2)); output += "<span class='normal'>" + mark.substring(1) + "</span>"; break;
-                    case "d": multiplier = parseInt(weight.substring(2, 3)); output += "<span class='dolgozat'>" + mark.substring(1) + "</span>"; break;
-                    case "t": multiplier = parseInt(weight.substring(3, 4)); output += "<span class='temazaro'>" + mark.substring(1) + "</span>"; break;
-                    case "v": multiplier = parseInt(weight.substring(4, 5)); output += "<span class='vizsga'>" + mark.substring(1) + "</span>"; break;
+                    case "k":
+                        multiplier = parseInt(weight.substring(0, 1));
+                        output += "<span class='kis' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        break;
+                    case "n":
+                        multiplier = parseInt(weight.substring(1, 2));
+                        output += "<span class='normal' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        break;
+                    case "d":
+                        multiplier = parseInt(weight.substring(2, 3));
+                        output += "<span class='dolgozat' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        break;
+                    case "t":
+                        multiplier = parseInt(weight.substring(3, 4));
+                        output += "<span class='temazaro' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        break;
+                    case "v":
+                        multiplier = parseInt(weight.substring(4, 5));
+                        output += "<span class='vizsga' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        break;
 
                 }
 
@@ -73,13 +118,17 @@ function display() {
 
         avg = (sum/base).toFixed(2);
 
-        output += "</td><td id='atlag'>";
+        output += "</td><td id='ujjegy'><a href='#' onclick='addMark(\"";
+        output += subject;
+        output += "\");'>+ jegy</a></td><td id='atlag'>";
         output += avg;
         output += "</td><td id='bizonyitvany'>";
         output += getFinalMark(avg);
         output += "</td></tr>";
 
     }
+
+    output += "<tr><td id='tantargy'><a href='#' onclick='addSubject();'>+ tantárgy</a></td><td id='jegyek' colspan='2'></td><td id='atlag'></td><td id='bizonyitvany'></td></tr>";
 
     document.getElementById("tbody").innerHTML = output;
 
@@ -120,7 +169,7 @@ function getCookieData() {
     var temp = document.cookie.split(";");
     var data = temp[0].split("=")[1];
     var textarea = document.getElementById("notes");
-    textarea.value = data;
+    //textarea.value = data;
 
 }
 

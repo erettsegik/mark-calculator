@@ -23,11 +23,11 @@
       <tr>
         <td>
         </td>
-        <td>
+        <td colspan='2'>
           Gipsz Jakab
         </td>
         <td colspan='2'>
-          <select id='sulyozas' onchange='parseInput();'>
+          <select id='sulyozas' onchange='display();'>
             <option value='11111'>1:1:1:1:1</option>
             <option value='11122'>1:1:1:2:2</option>
             <option value='12244'>1:2:2:4:4</option>
@@ -37,10 +37,16 @@
       </tr>
     </thead>
     <tbody id ='tbody'>
+    <tr>
+    <td id='tantargy'><a href='#' onclick='addSubject();'>+ tantárgy</a></td>
+    <td id='jegyek' colspan='2'></td>
+    <td id='atlag'></td>
+    <td id='bizonyitvany'></td>
+    </tr>
     </tbody>
     <tfoot>
       <tr>
-        <td colspan='4'>
+        <td colspan='5'>
           <span class='kis'>kis jegy</span>
           <span class='normal'>normál jegy</span>
           <span class='dolgozat'>dolgozat</span>
