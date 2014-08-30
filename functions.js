@@ -1,14 +1,20 @@
 var data = {};
-var input = "";
 
-function parseInput() {
+function loadTextData() {
 
-    input = document.getElementById("notes").value.trim();
-    var splitarray = input.split("\n");
+    var input = prompt('Másold be a szöveget:');
+    parseInput(input);
+
+}
+
+function parseInput(input) {
+
+    var splitarray = input.split("|");
 
     for (var i = 0; i < splitarray.length; i++) {
 
-        parseLine(splitarray[i]);
+        if (splitarray[i] != "")
+            parseLine(splitarray[i]);
 
     }
 
@@ -142,6 +148,30 @@ function getMarkValue(str) {
         case 3: return ((parseInt(str.substring(1, 2)) + parseInt(str.substring(3, 4))) / 2);
 
     }
+
+}
+
+function saveTextData() {
+
+    var output = "";
+
+    for (var subject in data) {
+
+        output += subject + ": ";
+
+        for (var markindex in data[subject]) {
+
+            var mark = data[subject][markindex].trim();
+
+            output += mark + " ";
+
+        }
+
+        output += "| ";
+
+    }
+
+    document.getElementById("exporttext").innerHTML = "Másold ki az alábbi szöveget, és mentsd el biztos helyre! <blockquote>" + output + "</blockquote>";
 
 }
 

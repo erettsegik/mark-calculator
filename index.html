@@ -10,13 +10,13 @@
 </head>
 <body>
   <div id='leiras'>
-    <p>A jegyeket a következő formátumban lehet jelenleg megadni: tantárgy, majd egy kettőspont után a jegyek szóközzel elválasztva, mindegyiket a típusának kezdőbetűje után írva (példa a bemeneti mezőben).
-    <br>Minden tantárgyat új sorba kell írni.</p>
+    <p>Segítség a <a href='https://github.com/mici-/jegyszamito/blob/gh-pages/README.md'>readme fájlban</a>.</p>
   </div>
   <div id='input'>
-    <textarea id='notes' placeholder='földrajz: k1 n2 d3 t4 v5' rows='4' cols='40'></textarea>
-    <br>
-    <input type='submit' onclick='parseInput();'>
+    <button id='loadfromcookie' onclick='loadCookieData();' disabled>
+    Adatok betöltése cookie-ból</button>
+    <button id='loadfromtext' onclick='loadTextData();'>
+    Adatok betöltése szövegből</button>
   </div>
   <table id='main'>
     <thead>
@@ -56,5 +56,13 @@
       </tr>
     </tfoot>
   </table>
+  <div id='export'>
+    <button id='exporttocookie' onclick='saveCookieData();' disabled>
+    Adatok mentése cookie-ba</button>
+    <button id='exporttotext' onclick='saveTextData();'>
+    Adatok mentése szövegbe</button>
+  </div>
+  <div id='exporttext'>
+  </div>
 </body>
 </html>
