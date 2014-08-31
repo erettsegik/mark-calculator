@@ -56,10 +56,61 @@ function addMark(subject) {
 
 }
 
+function openMark (subject, markindex) {
+
+    var mark = data[subject][markindex].trim();
+
+    var output = "";
+    output += "Jegy típusa: <select id='marktype' name='marktype'>";
+
+    var jegytipusok = {"k": "Kis jegy", "n": "Normál jegy", "d": "Dolgozat jegy", "t": "Témazáró jegy", "v": "Vizsga jegy"};
+
+    for (var tipusindex in jegytipusok) {
+        output += "<option";
+        if (mark.substring(0, 1) == tipusindex) {
+            output += " selected";
+        }
+        output += " value='" + tipusindex + "'>" + jegytipusok[tipusindex] + "</option>";
+    }
+
+    output += "</select><br>";
+    output += "Jegy értéke: <select id='markvalue' name='markvalue'>";
+
+    var jegyek = ["1", "1/2", "2", "2/3", "3", "3/4", "4", "4/5", "5"];
+
+    for (var jegy in jegyek) {
+        output += "<option";
+        if (mark.substring(1) == jegyek[jegy]) {
+            output += " selected";
+        }
+        output += " value='" + jegyek[jegy] + "'>" + jegyek[jegy] + "</option>";
+    }
+
+    output += "</select><br>";
+    output += "<input type='checkbox' id='deletemark'> Jegy törlése<br>";
+    output += "<input type='submit' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>";
+    output += "";
+
+    document.getElementById("outputfield").innerHTML = output;
+
+}
+
 function modifyMark (subject, markindex) {
 
-    var value = prompt("A jegy új értéke (ha üres, kitörli):");
-    data[subject][markindex] = value;
+    var deletecheck = document.getElementById("deletemark");
+    if (deletecheck.checked) {
+
+        delete data[subject][markindex];
+
+    } else {
+        var marktypeselect = document.getElementById("marktype");
+        var marktype = marktypeselect.options[marktypeselect.selectedIndex].value;
+        var markvalueselect = document.getElementById("markvalue");
+        var markvalue = markvalueselect.options[markvalueselect.selectedIndex].value;
+        data[subject][markindex] = marktype + markvalue;
+    }
+
+    document.getElementById("outputfield").innerHTML = "";
     display();
 
 }
@@ -94,23 +145,23 @@ function display() {
 
                     case "k":
                         multiplier = parseInt(weight.substring(0, 1));
-                        output += "<span class='kis' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        output += "<a href='#'><span class='kis' onclick='openMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span></a>";
                         break;
                     case "n":
                         multiplier = parseInt(weight.substring(1, 2));
-                        output += "<span class='normal' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        output += "<span class='normal' onclick='openMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
                         break;
                     case "d":
                         multiplier = parseInt(weight.substring(2, 3));
-                        output += "<span class='dolgozat' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        output += "<span class='dolgozat' onclick='openMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
                         break;
                     case "t":
                         multiplier = parseInt(weight.substring(3, 4));
-                        output += "<span class='temazaro' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        output += "<span class='temazaro' onclick='openMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
                         break;
                     case "v":
                         multiplier = parseInt(weight.substring(4, 5));
-                        output += "<span class='vizsga' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
+                        output += "<span class='vizsga' onclick='openMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
                         break;
 
                 }
@@ -171,7 +222,7 @@ function saveTextData() {
 
     }
 
-    document.getElementById("exporttext").innerHTML = "Másold ki az alábbi szöveget, és mentsd el biztos helyre! <blockquote>" + output + "</blockquote>";
+    document.getElementById("outputfield").innerHTML = "Másold ki az alábbi szöveget, és mentsd el biztos helyre! <blockquote>" + output + "</blockquote>";
 
 }
 
