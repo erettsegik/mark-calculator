@@ -4,6 +4,10 @@ body {
   font-size: 12px;
 }
 
+img {
+  border-width: 0;
+}
+
 table {
   margin: auto;
   margin-top: 10px;
@@ -19,7 +23,20 @@ thead {
 }
 
 td {
-  border: 1px solid #969696;
+  border: 0px solid #969696;
+  padding: 0 5px;
+}
+
+#addsubject {
+  background-image: url(img/add.png);
+  width: 15px;
+  height: 25px;
+}
+
+#removesubject {
+  background-image: url(img/remove.png);
+  width: 15px;
+  height: 25px;
 }
 
 #tantargy {
@@ -33,6 +50,12 @@ td {
   background-color: #eeeeee;
 }
 
+#ujjegy {
+  background-image: url(img/add.png);
+  width: 15px;
+  height: 25px;
+}
+
 #atlag {
   background-color: #646482;
   color: #ffffff;
@@ -41,6 +64,10 @@ td {
 #bizonyitvany {
   color: #ffffff;
   background-color: #446655;
+}
+
+span {
+  margin: 0 2px;
 }
 
 span.kis {

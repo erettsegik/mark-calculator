@@ -70,7 +70,7 @@ function newMark(subject) {
 
     output += "</select><br>";
     output += "<input type='submit' onclick='addMark(\"" + subject + "\");'>";
-    output += "";
+    output += "<input type='button' value='Mégse' onclick='clearDisplay();'>";
 
     document.getElementById("outputfield").innerHTML = output;
 
@@ -122,7 +122,7 @@ function openMark (subject, markindex) {
     output += "</select><br>";
     output += "<input type='checkbox' id='deletemark'> Jegy törlése<br>";
     output += "<input type='submit' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>";
-    output += "";
+    output += "<input type='button' value='Mégse' onclick='clearDisplay();'>";
 
     document.getElementById("outputfield").innerHTML = output;
 
@@ -148,6 +148,13 @@ function modifyMark (subject, markindex) {
 
 }
 
+function clearDisplay () {
+
+    document.getElementById("outputfield").innerHTML = "";
+    display();
+
+}
+
 function display() {
 
     var select = document.getElementById("sulyozas");
@@ -161,9 +168,8 @@ function display() {
         var base = 0;
         var sum = 0;
 
-        output += "<tr><td id='tantargy'>";
+        output += "<tr><td id='removesubject'onclick='deleteSubject(\"" + subject + "\");'></td><td id='tantargy'>";
         output += subject;
-        output += " <a href='#' onclick='deleteSubject(\"" + subject + "\");'>-törlés</a>";
         output += "</td><td id='jegyek'>";
 
         for (var markindex in data[subject]) {
@@ -178,7 +184,7 @@ function display() {
 
                     case "k":
                         multiplier = parseInt(weight.substring(0, 1));
-                        output += "<a href='#'><span class='kis' onclick='openMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span></a>";
+                        output += "<span class='kis' onclick='openMark(\"" + subject + "\", \"" + markindex + "\");'>" + mark.substring(1) + "</span>";
                         break;
                     case "n":
                         multiplier = parseInt(weight.substring(1, 2));
@@ -208,9 +214,9 @@ function display() {
 
         avg = (sum/base).toFixed(2);
 
-        output += "</td><td id='ujjegy'><a href='#' onclick='newMark(\"";
+        output += "</td><td id='ujjegy' onclick='newMark(\"";
         output += subject;
-        output += "\");'>+ jegy</a></td><td id='atlag'>";
+        output += "\");'></td><td id='atlag'>";
         output += avg;
         output += "</td><td id='bizonyitvany'>";
         output += getFinalMark(avg);
@@ -218,7 +224,7 @@ function display() {
 
     }
 
-    output += "<tr><td id='tantargy'><a href='#' onclick='addSubject();'>+ tantárgy</a></td><td id='jegyek' colspan='2'></td><td id='atlag'></td><td id='bizonyitvany'></td></tr>";
+    output += "<tr><td id='addsubject' onclick='addSubject();'></td><td id='tantargy'>tantárgy</td><td id='jegyek' colspan='2'></td><td id='atlag'></td><td id='bizonyitvany'></td></tr>";
 
     document.getElementById("tbody").innerHTML = output;
 

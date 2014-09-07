@@ -21,10 +21,11 @@
   <table id='main'>
     <thead>
       <tr>
-        <td>
+        <td colspan='2'>
+          Tantárgyak
         </td>
         <td colspan='2'>
-          Gipsz Jakab
+          Jegyek
         </td>
         <td colspan='2'>
           <select id='sulyozas' onchange='display();'>
@@ -38,7 +39,9 @@
     </thead>
     <tbody id ='tbody'>
     <tr>
-    <td id='tantargy'><a href='#' onclick='addSubject();'>+ tantárgy</a></td>
+    <td id='addsubject' onclick='addSubject();'>
+    </td>
+    <td id='tantargy'>tantárgy</td>
     <td id='jegyek' colspan='2'></td>
     <td id='atlag'></td>
     <td id='bizonyitvany'></td>
@@ -46,7 +49,7 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan='5'>
+        <td colspan='6'>
           <span class='kis'>kis jegy</span>
           <span class='normal'>normál jegy</span>
           <span class='dolgozat'>dolgozat</span>
