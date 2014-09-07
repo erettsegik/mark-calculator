@@ -35,9 +35,17 @@ function parseLine(instring) {
 
 function addSubject() {
 
-    var subjectname = prompt("Tantárgy neve:");
-    data[subjectname] = [];
-    display();
+    var subjectname = document.getElementById("newsubject").value;
+    if (subjectname == '') {
+
+        clearDisplay();
+
+    } else {
+
+        data[subjectname] = [];
+        display();
+
+    }
 
 }
 
@@ -168,9 +176,9 @@ function display() {
         var base = 0;
         var sum = 0;
 
-        output += "<tr><td id='removesubject'onclick='deleteSubject(\"" + subject + "\");'></td><td id='tantargy'>";
+        output += "<tr><td id='removesubject' onclick='deleteSubject(\"" + subject + "\");'></td><td class='tantargy'>";
         output += subject;
-        output += "</td><td id='jegyek'>";
+        output += "</td><td class='jegyek'>";
 
         for (var markindex in data[subject]) {
 
@@ -216,15 +224,31 @@ function display() {
 
         output += "</td><td id='ujjegy' onclick='newMark(\"";
         output += subject;
-        output += "\");'></td><td id='atlag'>";
-        output += avg;
-        output += "</td><td id='bizonyitvany'>";
-        output += getFinalMark(avg);
+        output += "\");'></td><td class='atlag'>";
+
+        if (avg != 'NaN')
+            output += avg;
+
+        output += "</td><td class='bizonyitvany'>";
+
+        if (avg != 'NaN')
+            output += getFinalMark(avg);
+
         output += "</td></tr>";
 
     }
 
-    output += "<tr><td id='addsubject' onclick='addSubject();'></td><td id='tantargy'>tantárgy</td><td id='jegyek' colspan='2'></td><td id='atlag'></td><td id='bizonyitvany'></td></tr>";
+    output += "<tr>";
+    output += "<td id='ujtantargy' class='tantargy' colspan='2'>";
+    output += "<form onsubmit='addSubject();'>";
+    output += "<input type='text' id='newsubject' placeholder='tantárgy'>";
+    output += "<input type='submit' value='' id='addsubject'>";
+    output += "</form>";
+    output += "</td>";
+    output += "<td class='jegyek' colspan='2'></td>";
+    output += "<td class='atlag'></td>";
+    output += "<td class='bizonyitvany'></td>";
+    output += "</tr>";
 
     document.getElementById("tbody").innerHTML = output;
 
