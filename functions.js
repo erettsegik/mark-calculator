@@ -48,10 +48,43 @@ function deleteSubject(subject) {
 
 }
 
+function newMark(subject) {
+
+    var output = "";
+    output += "Jegy típusa: <select id='marktype' name='marktype'>";
+
+    var jegytipusok = {"k": "Kis jegy", "n": "Normál jegy", "d": "Dolgozat jegy", "t": "Témazáró jegy", "v": "Vizsga jegy"};
+
+    for (var tipusindex in jegytipusok) {
+        output += "<option value='" + tipusindex + "'>" + jegytipusok[tipusindex] + "</option>";
+    }
+
+    output += "</select><br>";
+    output += "Jegy értéke: <select id='markvalue' name='markvalue'>";
+
+    var jegyek = ["1", "1/2", "2", "2/3", "3", "3/4", "4", "4/5", "5"];
+
+    for (var jegy in jegyek) {
+        output += "<option value='" + jegyek[jegy] + "'>" + jegyek[jegy] + "</option>";
+    }
+
+    output += "</select><br>";
+    output += "<input type='submit' onclick='addMark(\"" + subject + "\");'>";
+    output += "";
+
+    document.getElementById("outputfield").innerHTML = output;
+
+}
+
 function addMark(subject) {
 
-    var newmark = prompt("Jegy:");
-    data[subject].push(newmark);
+    var marktypeselect = document.getElementById("marktype");
+    var marktype = marktypeselect.options[marktypeselect.selectedIndex].value;
+    var markvalueselect = document.getElementById("markvalue");
+    var markvalue = markvalueselect.options[markvalueselect.selectedIndex].value;
+    data[subject].push(marktype + markvalue);
+
+    document.getElementById("outputfield").innerHTML = "";
     display();
 
 }
@@ -175,7 +208,7 @@ function display() {
 
         avg = (sum/base).toFixed(2);
 
-        output += "</td><td id='ujjegy'><a href='#' onclick='addMark(\"";
+        output += "</td><td id='ujjegy'><a href='#' onclick='newMark(\"";
         output += subject;
         output += "\");'>+ jegy</a></td><td id='atlag'>";
         output += avg;
