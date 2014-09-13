@@ -37,15 +37,33 @@ form {
 #newsubject {
   margin: 0;
   padding: 0;
-  height: 25px;
+  height: 20px;
   border: 0;
   outline: 0;
   margin: 0;
-  padding: 0;
-  line-height: 25px;
+  padding: 5px;
+  line-height: 20px;
+  width: 100%;
+  background-color: #828C96;
+  color: #ffffff;
 }
 
-#addsubject {
+::-webkit-input-placeholder {
+  color: #ffffff;
+}
+:-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+::-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: #ffffff;
+}
+
+#addsubjectbutton {
   background-image: url(img/add.png);
   width: 25px;
   height: 25px;
@@ -53,12 +71,32 @@ form {
   outline: 0;
   margin: 0;
   padding: 0;
+  background-color: #828C96;
+}
+
+#removesubjectbutton {
+  background-image: url(img/remove.png);
+  width: 25px;
+  height: 25px;
+  border: 0px;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #828C96;
+}
+
+#addsubject {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  background-color: #828C96;
 }
 
 #removesubject {
-  background-image: url(img/remove.png);
-  width: 15px;
+  width: 25px;
   height: 25px;
+  padding: 0;
+  background-color: #828C96;
 }
 
 td.tantargy {
@@ -77,9 +115,19 @@ td.jegyek {
 }
 
 #ujjegy {
-  background-image: url(img/add.png);
-  width: 15px;
+  width: 25px;
   height: 25px;
+  padding: 0;
+}
+
+#ujjegybutton {
+  background-image: url(img/add.png);
+  width: 25px;
+  height: 25px;
+  border: 0px;
+  outline: 0;
+  margin: 0;
+  padding: 0;
 }
 
 td.atlag {
@@ -114,4 +162,11 @@ span.temazaro {
 
 span.vizsga {
   color: #800080;
+}
+
+blockquote {
+  margin: auto;
+  width: auto;
+  background-color: #ededed;
+  font-style: italic;
 }

@@ -176,9 +176,9 @@ function display() {
         var base = 0;
         var sum = 0;
 
-        output += "<tr><td id='removesubject' onclick='deleteSubject(\"" + subject + "\");'></td><td class='tantargy'>";
+        output += "<tr><td class='tantargy'>";
         output += subject;
-        output += "</td><td class='jegyek'>";
+        output += "</td><td id='removesubject'><button id='removesubjectbutton' onclick='deleteSubject(\"" + subject + "\");'></button></td><td class='jegyek'>";
 
         for (var markindex in data[subject]) {
 
@@ -222,9 +222,9 @@ function display() {
 
         avg = (sum/base).toFixed(2);
 
-        output += "</td><td id='ujjegy' onclick='newMark(\"";
+        output += "</td><td id='ujjegy'><button id='ujjegybutton' onclick='newMark(\"";
         output += subject;
-        output += "\");'></td><td class='atlag'>";
+        output += "\");'></button></td><td class='atlag'>";
 
         if (avg != 'NaN')
             output += avg;
@@ -239,12 +239,11 @@ function display() {
     }
 
     output += "<tr>";
-    output += "<td id='ujtantargy' class='tantargy' colspan='2'>";
-    output += "<form onsubmit='addSubject();'>";
-    output += "<input type='text' id='newsubject' placeholder='tantárgy'>";
-    output += "<input type='submit' value='' id='addsubject'>";
-    output += "</form>";
+    output += "<td id='ujtantargy' class='tantargy'>";
+    output += "<input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus>";
     output += "</td>";
+    output += "<td id='addsubject'><button id='addsubjectbutton' onclick='addSubject();'></button></td>";
+    output += "</form>";
     output += "<td class='jegyek' colspan='2'></td>";
     output += "<td class='atlag'></td>";
     output += "<td class='bizonyitvany'></td>";
