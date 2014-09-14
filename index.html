@@ -12,12 +12,6 @@
   <div id='leiras'>
     <p>Segítség a <a href='https://github.com/mici-/jegyszamito/blob/gh-pages/README.md'>readme fájlban</a>.</p>
   </div>
-  <div id='input'>
-    <button id='loadfromcookie' onclick='loadCookieData();' disabled>
-    Adatok betöltése cookie-ból</button>
-    <button id='loadfromtext' onclick='loadTextData();'>
-    Adatok betöltése szövegből</button>
-  </div>
   <table id='main'>
     <thead>
       <tr>
@@ -60,13 +54,23 @@
       </tr>
     </tfoot>
   </table>
-  <div id='export'>
-    <button id='exporttocookie' onclick='saveCookieData();' disabled>
-    Adatok mentése cookie-ba</button>
-    <button id='exporttotext' onclick='saveTextData();'>
-    Adatok mentése szövegbe</button>
+  <div id='jegyszerkesztes'>
   </div>
-  <div id='outputfield'>
+  <div id='data'>
+    <fieldset>
+      <legend>Adatkezelés</legend>
+      <button id='loadfromcookie' onclick='loadCookieData();' disabled>
+      Adatok betöltése cookieból</button>
+      <button id='loadfromtext' onclick='loadTextData();'>
+      Adatok betöltése szövegből</button>
+      <br>
+      <button id='exporttocookie' onclick='saveCookieData();' disabled>
+      Adatok mentése cookieba</button>
+      <button id='exporttotext' onclick='saveTextData();'>
+      Adatok mentése szövegbe</button>
+      <div id='outputfield'>
+      </div>
+    </fieldset>
   </div>
 </body>
 </html>

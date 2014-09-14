@@ -59,6 +59,8 @@ function deleteSubject(subject) {
 function newMark(subject) {
 
     var output = "";
+    output += "<fieldset>";
+    output += "<legend>Jegy szerkesztése</legend>";
     output += "Jegy típusa: <select id='marktype' name='marktype'>";
 
     var jegytipusok = {"k": "Kis jegy", "n": "Normál jegy", "d": "Dolgozat jegy", "t": "Témazáró jegy", "v": "Vizsga jegy"};
@@ -79,8 +81,9 @@ function newMark(subject) {
     output += "</select><br>";
     output += "<input type='submit' onclick='addMark(\"" + subject + "\");'>";
     output += "<input type='button' value='Mégse' onclick='clearDisplay();'>";
+    output += "</fieldset>";
 
-    document.getElementById("outputfield").innerHTML = output;
+    document.getElementById("jegyszerkesztes").innerHTML = output;
 
 }
 
@@ -92,7 +95,7 @@ function addMark(subject) {
     var markvalue = markvalueselect.options[markvalueselect.selectedIndex].value;
     data[subject].push(marktype + markvalue);
 
-    document.getElementById("outputfield").innerHTML = "";
+    document.getElementById("jegyszerkesztes").innerHTML = "";
     display();
 
 }
@@ -102,6 +105,8 @@ function openMark (subject, markindex) {
     var mark = data[subject][markindex].trim();
 
     var output = "";
+    output += "<fieldset>";
+    output += "<legend>Jegy szerkesztése</legend>";
     output += "Jegy típusa: <select id='marktype' name='marktype'>";
 
     var jegytipusok = {"k": "Kis jegy", "n": "Normál jegy", "d": "Dolgozat jegy", "t": "Témazáró jegy", "v": "Vizsga jegy"};
@@ -131,8 +136,9 @@ function openMark (subject, markindex) {
     output += "<input type='checkbox' id='deletemark'> Jegy törlése<br>";
     output += "<input type='submit' onclick='modifyMark(\"" + subject + "\", \"" + markindex + "\");'>";
     output += "<input type='button' value='Mégse' onclick='clearDisplay();'>";
+    output += "</fieldset>";
 
-    document.getElementById("outputfield").innerHTML = output;
+    document.getElementById("jegyszerkesztes").innerHTML = output;
 
 }
 
@@ -151,13 +157,14 @@ function modifyMark (subject, markindex) {
         data[subject][markindex] = marktype + markvalue;
     }
 
-    document.getElementById("outputfield").innerHTML = "";
+    document.getElementById("jegyszerkesztes").innerHTML = "";
     display();
 
 }
 
 function clearDisplay () {
 
+    document.getElementById("jegyszerkesztes").innerHTML = "";
     document.getElementById("outputfield").innerHTML = "";
     display();
 
