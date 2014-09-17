@@ -20,8 +20,6 @@ function parseInput(input) {
 
     display();
 
-    //cookiemagic();
-
 }
 
 function parseLine(instring) {
@@ -292,34 +290,6 @@ function saveTextData() {
     }
 
     document.getElementById("outputfield").innerHTML = "Másold ki az alábbi szöveget, és mentsd el biztos helyre! <blockquote>" + output + "</blockquote>";
-
-}
-
-function cookiemagic() {
-
-    if (input != "") {
-
-        var date = new Date();
-        date.setTime(date.getTime()+(365*24*60*60*1000));
-        cookiestring = "data=" + input + "; expires=" + date.toGMTString() + "; path=/";
-        document.cookie = cookiestring;
-
-    } else {
-
-        var date = new Date();
-        date.setTime(date.getTime()-(365*24*60*60*1000));
-        document.cookie = "data=; expires=" + date.toGMTString() + "; path=/";
-
-    }
-
-}
-
-function getCookieData() {
-
-    var temp = document.cookie.split(";");
-    var data = temp[0].split("=")[1];
-    var textarea = document.getElementById("notes");
-    //textarea.value = data;
 
 }
 

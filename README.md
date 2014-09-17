@@ -6,13 +6,11 @@ Ezt a feladatot hivatott elvégezni a jegyszámító, amellyel könnyedén nyomo
 
 # A program használata
 
-A jegyszámító tiszta JavaScriptre épül, így elméletileg a teljes oldal letöltése után lokálisan is használható, ez azonban egy-két funkciót elronthat, tipikusan ilyen a cookie-k kezelése, azaz az adatok elmentése.
-
-Az oldal egyelőre folyamatos fejlesztés alatt áll, így komoly használatra még nem ajánlanám, az adatok megőrzése, vagy a különböző verziók közt a visszafele kompatibilitás nem garantált.
+A jegyszámító tiszta JavaScriptre épül, így elméletileg a teljes oldal letöltése után lokálisan is használható.
 
 Tantárgy hozzáadása
 -------------------
-A táblázat legalsó sorában egy bemeneti mezőt találunk `új tantárgy neve` szöveggel, ebbe beírva a tantárgy nevét, majd az `+` gombra kattintva az új sor megjelenik a táblázatban.
+A táblázat legalsó sorában egy bemeneti mezőt találunk `új tantárgy neve` szöveggel, ebbe beírva a tantárgy nevét, majd a `+` gombra kattintva az új sor megjelenik a táblázatban.
 
 Jegy hozzáadása
 ---------------
@@ -29,8 +27,3 @@ Ha valaki gyorsabb módszernek gondolja a bemeneti szöveg megírását a kattin
     földrajz: v3 n3 k2 | matematika: t3 d4 t3/4 | történelem: k1 n4 t3
 
 (Megjegyzés: az utolsó tantárgy után opcionálisan írható egy lezáró `|` is).
-
-
-# Ismert hibák és tökéletlenségek
-
-* A cookies adatmentés nem működik
